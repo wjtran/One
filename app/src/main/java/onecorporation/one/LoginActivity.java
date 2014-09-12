@@ -79,7 +79,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.login_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +87,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             }
         });
 
-        Button newAccountButton = (Button) findViewById(R.id.new_account_button);
+        Button newAccountButton = (Button) findViewById(R.id.register_button);
         newAccountButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +95,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
+        Button deleteButton = (Button) findViewById(R.id.delete_account);
+        deleteButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteAccount();
+            }
+        });
+
+
+        mLoginFormView = findViewById(R.id.email_login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
 
@@ -191,9 +200,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         boolean access = loginModel.delete(username);
 
         if (access) {
-            //TODO toast user
+            Toast.makeText(getApplicationContext(), "Deleting " + username + " successful!", Toast.LENGTH_SHORT).show();
         } else {
-            //TODO toast user
+            Toast.makeText(getApplicationContext(), "Error in deleting " + username, Toast.LENGTH_SHORT).show();
         }
     }
 
