@@ -3,6 +3,7 @@ package onecorporation.one;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
@@ -19,11 +20,14 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,9 +45,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     private static LoginModel loginModel;
 
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
+    /* Keep track of the login task to ensure we can cancel it if requested. */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -68,22 +70,20 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
 
-
-
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
 
-                    //attemptLogin();
+                    attemptLogin();
                     return true;
                 }
                 return false;
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.login_button);
+        final Button mEmailSignInButton = (Button) findViewById(R.id.login_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                 attemptLogin();
             }
         });
 
@@ -102,7 +102,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
                 deleteAccount();
             }
         });
-
 
         mLoginFormView = findViewById(R.id.email_login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -132,7 +131,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
         boolean cancel = false;
         View focusView = null;
-
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
@@ -173,7 +171,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
                 startActivity(mainIntent);
             } else {
-                //TODO: handle the error here!
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.setText("");
             }
         }
     }
@@ -189,6 +188,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             attemptLogin();
         } else {
             //TODO error message that this account exists
+            mEmailView.setError(getString(R.string.error_invalid_email));
         }
     }
 
