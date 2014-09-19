@@ -1,12 +1,12 @@
 package onecorporation.one.Models;
 
-import java.util.Date;
-
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.Context;
+
+import java.util.Date;
 
 /**
  * Model to hold the SQLite database for accounts
@@ -45,7 +45,7 @@ public class LoginModel {
     public boolean login(String username, String password) {
         try {
             Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable +
-                   " WHERE " + loginModelHelper.usersTableName + " = ?", new String[] { username.trim() });
+                    " WHERE " + loginModelHelper.usersTableName + " = ?", new String[]{username.trim()});
 
             if (cursor.moveToNext()) {
                 String databasePassword = cursor.getString(cursor.getColumnIndex(loginModelHelper.usersTablePassword));
@@ -56,7 +56,8 @@ public class LoginModel {
                     return true;
                 }
             }
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
         return false;
     }
 
@@ -64,7 +65,7 @@ public class LoginModel {
     public boolean create(String username, String password) {
         try {
             Cursor cursor = loginDatabase.rawQuery("SELECT * FROM " + loginModelHelper.usersTable +
-                   " WHERE " + loginModelHelper.usersTableName + " = ?", new String[] { username.trim() });
+                    " WHERE " + loginModelHelper.usersTableName + " = ?", new String[]{username.trim()});
 
             if (cursor.moveToNext()) {
                 cursor.close();
@@ -91,13 +92,14 @@ public class LoginModel {
                 return true;
             }
 
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
         return false;
     }
 
     /* account deletion, return true if successful */
     public boolean delete(String username) {
-        int row = loginDatabase.delete(loginModelHelper.usersTable, loginModelHelper.usersTableName + " = ?", new String[] { username });
+        int row = loginDatabase.delete(loginModelHelper.usersTable, loginModelHelper.usersTableName + " = ?", new String[]{username});
 
         if (row != 0) {
             return true;

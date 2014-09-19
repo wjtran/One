@@ -1,11 +1,11 @@
 package onecorporation.one.Models;
 
-import java.util.Date;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.Date;
 
 /**
  * Database helper class to handle creates and updates
@@ -21,13 +21,12 @@ public class LoginModelHelper extends SQLiteOpenHelper {
     public static final String usersTableLastName = "lastname";
     public static final String usersTableCreationDate = "creationdate";
     public static final String notNull = " TEXT NOT NULL, ";
-
-    /* database housekeeping */
-    private static final int databaseVersion = 1;
     private static final String createTable = "CREATE TABLE " + usersTable + " (" + usersTable +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + usersTableName + notNull +
             usersTablePassword + notNull + usersTableFirstName + notNull + usersTableLastName +
             notNull + usersTableCreationDate + " TEXT NOT NULL);";
+    /* database housekeeping */
+    private static final int databaseVersion = 1;
 
     public LoginModelHelper(Context context) {
         super(context, databaseName, null, databaseVersion);

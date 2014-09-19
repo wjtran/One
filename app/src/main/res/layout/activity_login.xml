@@ -6,15 +6,6 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"/>
-
     <LinearLayout
         android:id="@+id/email_login_form"
         android:layout_width="fill_parent"
@@ -40,10 +31,14 @@
 
         </LinearLayout>
 
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="5dp" />
+
         <AutoCompleteTextView
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="80dp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -53,7 +48,7 @@
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="80dp"
             android:hint="@string/password"
             android:imeActionId="@+id/login"
             android:imeActionLabel="@string/action_sign_in_short"
@@ -64,7 +59,7 @@
 
         <Space
             android:layout_width="fill_parent"
-            android:layout_height="10dp" />
+            android:layout_height="5dp" />
 
         <Button
             android:id="@+id/login_button"
@@ -83,16 +78,6 @@
             android:textStyle="bold"
             android:background="#ff538cd4"
             android:textColor="#ffffffff" />
-
-        <Button
-            android:id="@+id/delete_account"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="delete account for testing"
-            android:textStyle="bold"
-            android:clickable="true" />
 
     </LinearLayout>
 </LinearLayout>

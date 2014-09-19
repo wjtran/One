@@ -9,5 +9,10 @@
     <string name="email">EMAIL</string>
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="word">WORD</string>
+    <string name="respond">RESPOND</string>
+    <string name="account_exist">This Account Exists!</string>
+    <string name="empty_field">Field is empty</string>
 
 </resources>
