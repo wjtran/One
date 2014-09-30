@@ -79,7 +79,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         newAccountButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAccount();
+                Intent mainIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+
+                // reset the user and password field before going to the next page
+                mEmailView.setText("");
+                mPasswordView.setText("");
+
+                startActivity(mainIntent);
             }
         });
 
@@ -143,23 +149,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.setText("");
             }
-        }
-    }
-
-    /* Account creation */
-    public void createAccount() {
-        String username = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean access = loginModel.create(username, password);
-
-        if (access) {
-            attemptLogin();
-        } else if (username.isEmpty()) {
-            mEmailView.setError(getString(R.string.empty_field));
-        }
-        else {
-            mEmailView.setError(getString(R.string.account_exist));
         }
     }
 

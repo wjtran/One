@@ -16,7 +16,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#ff0070bf" >
+            android:background="#ff8300" >
 
             <ImageView
                 android:id="@+id/profile_picture"
@@ -40,7 +40,7 @@
             android:layout_height="100dp"
             android:text="@string/word"
             android:textStyle="bold"
-            android:background="#ff0070bf"
+            android:background="#ff8300"
             android:textColor="#ffffffff" />
 
         <Button
@@ -49,7 +49,7 @@
             android:layout_height="100dp"
             android:text="@string/respond"
             android:textStyle="bold"
-            android:background="#ff538cd4"
+            android:background="#fff69a45"
             android:textColor="#ffffffff" />
 
     </LinearLayout>

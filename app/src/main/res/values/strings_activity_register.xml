@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="profile_name">NAME</string>
+    <string name="profile_dob">DATE OF BIRTH</string>
+    <string name="profile_location">LOCATION</string>
+    <string name="profile_password">PASSWORD</string>
+    <string name="profile_password_verify">RE-ENTER PASSWORD</string>
+
+</resources>
