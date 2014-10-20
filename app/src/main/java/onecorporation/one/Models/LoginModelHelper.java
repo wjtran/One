@@ -21,10 +21,14 @@ public class LoginModelHelper extends SQLiteOpenHelper {
     public static final String usersTableLastName = "lastname";
     public static final String usersTableCreationDate = "creationdate";
     public static final String notNull = " TEXT NOT NULL, ";
-    private static final String createTable = "CREATE TABLE " + usersTable + " (" + usersTable +
-            " INTEGER PRIMARY KEY AUTOINCREMENT, " + usersTableName + notNull +
-            usersTablePassword + notNull + usersTableFirstName + notNull + usersTableLastName +
-            notNull + usersTableCreationDate + " TEXT NOT NULL);";
+
+    private static final String createTable = "CREATE TABLE " + usersTable + " ("
+                                            + usersTable + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                            + usersTableName + notNull
+                                            + usersTablePassword + notNull
+                                            + usersTableFirstName + notNull
+                                            + usersTableLastName + notNull
+                                            + usersTableCreationDate + notNull + ");";
     /* database housekeeping */
     private static final int databaseVersion = 1;
 

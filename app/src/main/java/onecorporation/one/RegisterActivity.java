@@ -1,7 +1,11 @@
 package onecorporation.one;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,11 +15,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.File;
+
+import onecorporation.one.Data.PhotoEntry;
 import onecorporation.one.Models.LoginModel;
+import onecorporation.one.Models.PhotoModel;
 
 
 public class RegisterActivity extends Activity {
 
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static LoginModel loginModel;
 
     private EditText mUsernameView;
@@ -32,6 +41,21 @@ public class RegisterActivity extends Activity {
         mUsernameView = (EditText) findViewById(R.id.profile_name);
         mPasswordView = (EditText) findViewById(R.id.profile_password);
         mLocationView = (EditText) findViewById(R.id.profile_location);
+
+        final ImageButton profilePicButton = (ImageButton) findViewById(R.id.profile_picture);
+        profilePicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //TODO: start up front facing camera if it exists on the phone
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory() + File.separator + "tmp.jpg")));
+
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+                //TODO: set the temp photo in the imagebutton
+            }
+        });
 
         final ImageButton maleAndroidButton = (ImageButton) findViewById(R.id.button_male);
         maleAndroidButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +89,7 @@ public class RegisterActivity extends Activity {
         newAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: save the image to the users database
                 createAccount();
             }
         });

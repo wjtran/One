@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import onecorporation.one.Models.LoginModel;
+import onecorporation.one.Models.PhotoModel;
 
 
 /**
@@ -33,6 +34,7 @@ import onecorporation.one.Models.LoginModel;
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     private static LoginModel loginModel;
+    public static final String ENCRYPTION_KEY = "AndroidKey"; //TODO: change this key
 
     /* Keep track of the login task to ensure we can cancel it if requested. */
 //    private UserLoginTask mAuthTask = null;
@@ -41,6 +43,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mLoginFormView;
+    private static PhotoModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +140,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             boolean access = loginModel.login(username, password);
             if (access) {
 
+                model.setUser(loginModel.getCurrentUser());
+
                 Toast.makeText(getApplicationContext(), "Welcome back! " + username, Toast.LENGTH_SHORT).show();
 
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -205,7 +210,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailView.setAdapter(adapter);
     }
 
-
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -214,6 +218,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
+    }
+
+    private static void initializeDatabase() {
+
     }
 }
 
